@@ -13,5 +13,9 @@ This supports my ability to continue this work.
 {% endfor %}
 
 
-\[Purchase Access → https://4826416436635.gumroad.com/l/gnzye ]
+<p>
+  <a class="btn" href="https://jncrisp.gumroad.com/l/gnzye" target="_blank" rel="noopener">
+    Purchase access →
+  </a>
+</p>
 
