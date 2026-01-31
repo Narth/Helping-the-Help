@@ -15,54 +15,72 @@ Some are behind a small one-time purchase.
 Everything here is written by me. 
 
 <hr>
-
-<button id="ttsBtn" type="button">🔊 Read aloud</button>
-
-<button id="ttsStop" type="button">⏹ Stop</button>
-
-
+<div style="display:flex; gap:0.5rem; flex-wrap:wrap;">
+  <button id="ttsBtn" type="button">🔊 Read aloud</button>
+  <button id="ttsStop" type="button">⏹ Stop</button>
+  <span id="ttsStatus" style="opacity:0.75;"></span>
+</div>
 
 <script>
+(function () {
+  function setStatus(msg) {
+    var el = document.getElementById("ttsStatus");
+    if (el) el.textContent = msg || "";
+  }
 
-(() => {
+  function getReadableText() {
+    // Prefer the main content area if present
+    var main = document.querySelector("main") || document.querySelector("article");
+    var text = (main ? main.innerText : document.body.innerText) || "";
+    return text.replace(/\s+\n/g, "\n").trim();
+  }
 
-&nbsp; const btn = document.getElementById("ttsBtn");
+  function speakNow() {
+    try {
+      if (!("speechSynthesis" in window)) {
+        setStatus("TTS not supported in this browser.");
+        return;
+      }
+      var text = getReadableText();
+      if (!text) {
+        setStatus("No text found to read.");
+        return;
+      }
 
-&nbsp; const stop = document.getElementById("ttsStop");
+      // Cancel any existing speech and start fresh
+      window.speechSynthesis.cancel();
 
+      var u = new SpeechSynthesisUtterance(text);
+      u.onstart = function () { setStatus("Reading…"); };
+      u.onend   = function () { setStatus(""); };
+      u.onerror = function (e) { setStatus("TTS error: " + (e.error || "unknown")); };
 
+      window.speechSynthesis.speak(u);
+    } catch (err) {
+      setStatus("TTS failed (see console).");
+      console.error(err);
+    }
+  }
 
-&nbsp; function getReadableText() {
+  function stopNow() {
+    if ("speechSynthesis" in window) window.speechSynthesis.cancel();
+    setStatus("");
+  }
 
-&nbsp;   // Reads visible page text
+  // Ensure the DOM exists before we bind events
+  window.addEventListener("DOMContentLoaded", function () {
+    var btn = document.getElementById("ttsBtn");
+    var stop = document.getElementById("ttsStop");
 
-&nbsp;   const text = document.body.innerText || "";
+    if (!btn || !stop) {
+      setStatus("TTS UI not found.");
+      return;
+    }
 
-&nbsp;   return text.trim();
+    btn.addEventListener("click", speakNow);
+    stop.addEventListener("click", stopNow);
 
-&nbsp; }
-
-
-
-&nbsp; btn?.addEventListener("click", () => {
-
-&nbsp;   const text = getReadableText();
-
-&nbsp;   if (!text) return;
-
-&nbsp;   speechSynthesis.cancel();
-
-&nbsp;   speechSynthesis.speak(new SpeechSynthesisUtterance(text));
-
-&nbsp; });
-
-
-
-&nbsp; stop?.addEventListener("click", () => speechSynthesis.cancel());
-
+    setStatus("Ready.");
+  });
 })();
-
 </script>
-
-
-
