@@ -1,6 +1,6 @@
 ---
 title: The Scar Tissue
-collection: paid
+tags: ["paid"]
 ---
 
 # Prompt

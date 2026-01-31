@@ -4,6 +4,11 @@ module.exports = function (eleventyConfig) {
     dir: {
       input: ".",
       output: "_site"
-    }
+    },
+    markdownTemplateEngine: "liquid",
+    htmlTemplateEngine: "liquid",
+    dir: {
+      output: "_site",
+    },
   };
 };

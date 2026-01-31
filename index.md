@@ -1,5 +1,8 @@
 \# Helping the Help
 
+- [Free Library](/free/)
+- [Paid Library](/paid/)
+- [About](/about/)
 
 
 This is a record of service: moments where help was given, thinking was shared, and no extraction was intended.
