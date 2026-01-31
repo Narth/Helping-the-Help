@@ -1,3 +1,8 @@
+---
+title: The Scar Tissue
+collection: paid
+---
+
 # Prompt
 Describe a time “helping” became self-erasure, and describe a boundary you wish existed.
 
