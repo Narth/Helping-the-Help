@@ -1,4 +1,9 @@
-\# Helping the Help
+---
+layout: base
+title: Helping the Help
+---
+
+# Helping the Help
 
 - [Free Library](/free/)
 - [Paid Library](/paid/)

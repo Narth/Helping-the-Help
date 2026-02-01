@@ -1,4 +1,9 @@
-\# Paid Library
+---
+layout: base
+title: Paid Library
+---
+
+# Paid Library
 
 
 
@@ -18,4 +23,3 @@ This supports my ability to continue this work.
     Purchase access →
   </a>
 </p>
-
