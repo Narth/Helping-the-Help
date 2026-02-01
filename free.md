@@ -1,4 +1,9 @@
-\# Free Library
+---
+layout: base
+title: Free Library
+---
+
+# Free Library
 
 
 
@@ -12,5 +17,3 @@ They represent my belief that help should be shared even when nothing is returne
 {% for post in collections.free %}
 - [{{ post.data.title }}]({{ post.url }})
 {% endfor %}
-
-
